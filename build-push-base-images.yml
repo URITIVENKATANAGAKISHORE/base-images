@@ -14,7 +14,7 @@ steps:
     displayName: 'Build Java Base Image'
     inputs:
       Dockerfile: 'java/Dockerfile'
-      containerRegistry: $(pipeline.containerRegistry)
+      containerRegistry: $(pipeline_containerRegistry)
       repository: $(global_repository)
       command: build
       tags: | 
