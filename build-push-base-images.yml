@@ -1,0 +1,21 @@
+pr: none
+
+variables:
+
+  global_isMaster: $[eq(variables['Build.SourceBranch'],'refs/heads/master')]
+  global_repository: 'openplatform/base-images'
+  global_image_tag_java: 'x86_64-apline-jdk-11.0.11_9'
+
+pool:
+  vmImage: $(pipeline.pool.vmImage)
+
+steps:
+  - task: Docker@2
+    displayName: 'Build Java Base Image'
+    inputs:
+      Dockerfile: 'java/Dockerfile'
+      containerRegistry: $(pipeline.containerRegistry)
+      repository: $(global_repository)
+      command: build
+      tags: | 
+        $(global_image_tag_java)
